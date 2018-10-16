@@ -32,3 +32,14 @@ NAB::TBUser::TBUser(std::string_view id)
     : Id(id)
 {
 }
+
+std::string NAB::TBUser::GenerateData() {
+    return std::to_string(Delta_ + Multiplier_ * (Number_++));
+}
+
+NAB::TBUser::TBUser(int delta, int multiplier)
+    : Delta_(delta)
+    , Multiplier_(multiplier)
+    , Number_(0)
+{
+}

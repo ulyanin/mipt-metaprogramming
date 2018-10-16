@@ -1,9 +1,10 @@
 #include "a_user.h"
+#include "b_user.h"
 
 #include <iostream>
 
 std::string_view NAB::TAUser::GetName() const {
-    return Name;
+    return Name_;
 }
 
 void NAB::TAUser::Update(const NGenericHelper::TObserverNotifyData& data) {
@@ -11,10 +12,19 @@ void NAB::TAUser::Update(const NGenericHelper::TObserverNotifyData& data) {
 }
 
 NAB::TAUser::TAUser(std::string_view id)
-    : Id(id)
+    : Id_(id)
 {
 }
 
 std::string NAB::TAUser::GetId() const {
-    return Id;
+    return Id_;
+}
+
+void NAB::TAUser::PrintGeneratedData() {
+    std::cout << BUser_->GenerateData() << std::endl;
+}
+
+NAB::TAUser::TAUser(std::shared_ptr<NAB::TBUser> bUser)
+    : BUser_(bUser)
+{
 }

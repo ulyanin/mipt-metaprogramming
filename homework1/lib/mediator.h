@@ -13,9 +13,6 @@
 
 namespace NGenericHelper {
 
-//template<EGenericSpecification specification>
-//class TGenericHelper;
-
 
 template<>
 class TGenericHelper<EGenericSpecification::Mediator> {
