@@ -5,8 +5,8 @@
 namespace NGenericHelper {
 
 enum EObserverEvent {
-    OET_A = 0,
-    OET_B = 1,
+    OET_EVENT1 = 0,
+    OET_EVENT2 = 1,
     OET_END = 2,
 };
 
