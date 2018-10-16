@@ -1,8 +1,22 @@
-//
-// Created by ulyanin on 16.10.18.
-//
+#pragma once
 
-#ifndef HOMEWORK1_B_USER_H
-#define HOMEWORK1_B_USER_H
+#include "common.h"
+#include "observer.h"
 
-#endif //HOMEWORK1_B_USER_H
+#include <string>
+#include <string_view>
+
+namespace NAB {
+
+class TBUser {
+public:
+    virtual void OnStartAction();
+    virtual void OnStopAction();
+
+private:
+
+    NGenericHelper::TGenericHelper<NGenericHelper::EGenericSpecification::Observer> eventManager;
+
+};
+
+}  // namespace NAB

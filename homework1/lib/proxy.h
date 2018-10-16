@@ -1,8 +1,14 @@
-//
-// Created by ulyanin on 16.10.18.
-//
+#pragma once
 
-#ifndef HOMEWORK1_PROXY_H
-#define HOMEWORK1_PROXY_H
+#include "common.h"
 
-#endif //HOMEWORK1_PROXY_H
+
+namespace NGenericHelper {
+
+template<>
+class TGenericHelper<EGenericSpecification::Proxy> {
+
+};
+
+}  // namespace NGenericHelper
+

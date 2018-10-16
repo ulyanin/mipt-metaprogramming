@@ -1,8 +1,20 @@
-//
-// Created by ulyanin on 16.10.18.
-//
+#pragma once
 
-#ifndef HOMEWORK1_A_USER_H
-#define HOMEWORK1_A_USER_H
+#include "common.h"
 
-#endif //HOMEWORK1_A_USER_H
+#include <string>
+#include <string_view>
+
+namespace NAB {
+
+class TAUser {
+public:
+    virtual std::string_view GetName() const;
+
+    virtual void Update(const NGenericHelper::TObserverNotifyData& data);
+private:
+    static constexpr std::string_view Name = "AUser";
+};
+
+
+}  // namespace NAB
