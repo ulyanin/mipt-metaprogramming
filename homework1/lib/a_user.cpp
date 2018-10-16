@@ -2,6 +2,7 @@
 #include "b_user.h"
 
 #include <iostream>
+#include <cassert>
 
 std::string_view NAB::TAUser::GetName() const {
     return Name_;
@@ -21,6 +22,7 @@ std::string NAB::TAUser::GetId() const {
 }
 
 void NAB::TAUser::PrintGeneratedData() {
+    assert(BUser_ != nullptr);
     std::cout << BUser_->GenerateData() << std::endl;
 }
 

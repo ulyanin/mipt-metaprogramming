@@ -30,7 +30,7 @@ public:
 private:
     static constexpr std::string_view Name_ = "AUser";
     std::string Id_ = "ID";
-    std::shared_ptr<TBUser> BUser_;
+    std::shared_ptr<TBUser> BUser_ = nullptr;
 };
 
 
