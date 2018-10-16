@@ -19,7 +19,7 @@ public:
     }
 
     // wrapped method of NAB::TBUser::GenerateData()
-    std::string GenerateData() {
+    std::string GenerateData() override {
         std::stringstream ss;
         ss << "Number = '" + NAB::TBUser::GenerateData()  << "'";
         return ss.str();
