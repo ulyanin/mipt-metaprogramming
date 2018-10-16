@@ -7,7 +7,6 @@
 #include "lib/b_user.h"
 
 int main() {
-    NGenericHelper::TGenericHelper<NGenericHelper::EGenericSpecification::Mediator> mediator;
     NGenericHelper::TGenericHelper<NGenericHelper::EGenericSpecification::Proxy> proxy;
     std::cout << "Hello, World!" << std::endl;
 
@@ -25,6 +24,19 @@ int main() {
         b.DoEvent1();
         b.DoEvent2();
         std::cout << "}}} end observer test" << std::endl;
+    }
+
+    {
+        // Mediator test
+
+        std::cout << "{{{ start mediator test" << std::endl;
+        NGenericHelper::TGenericHelper<NGenericHelper::EGenericSpecification::Mediator> mediator;
+        mediator.RegisterUsers();
+        NAB::TAUser a("a");
+        mediator.Notify(a, NGenericHelper::EMediatorEvent::Start);
+        mediator.Notify(a, NGenericHelper::EMediatorEvent::Stop);
+        std::cout << "}}} end mediator test" << std::endl;
+
     }
     return 0;
 }

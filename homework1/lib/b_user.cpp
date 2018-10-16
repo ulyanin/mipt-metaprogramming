@@ -5,11 +5,11 @@
 #include <iostream>
 
 void NAB::TBUser::OnStartAction() {
-    std::cout << "NAB::TBUser::OnStartAction" << std::endl;
+    std::cout << "NAB::TBUser::OnStartAction:" << Id << std::endl;
 }
 
 void NAB::TBUser::OnStopAction() {
-    std::cout << "NAB::TBUser::OnStopAction" << std::endl;
+    std::cout << "NAB::TBUser::OnStopAction:" << Id << std::endl;
 
 }
 
@@ -25,5 +25,10 @@ void NAB::TBUser::DoEvent2() {
 
 NAB::TBUser::TBUser(NGenericHelper::TGenericHelper<NGenericHelper::EGenericSpecification::Observer>& eventManager)
     : EventManager(&eventManager)
+{
+}
+
+NAB::TBUser::TBUser(std::string_view id)
+    : Id(id)
 {
 }

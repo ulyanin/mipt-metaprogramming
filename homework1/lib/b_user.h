@@ -13,6 +13,7 @@ public:
 
     TBUser() = default;
     TBUser(NGenericHelper::TGenericHelper<NGenericHelper::EGenericSpecification::Observer>& eventManager);
+    TBUser(std::string_view id);
 
     // Mediator methods start
     virtual void OnStartAction();
@@ -23,6 +24,8 @@ public:
     virtual void DoEvent2();
 
 private:
+
+    std::string Id = "Id";
 
     NGenericHelper::TGenericHelper<NGenericHelper::EGenericSpecification::Observer>* EventManager = nullptr;
 

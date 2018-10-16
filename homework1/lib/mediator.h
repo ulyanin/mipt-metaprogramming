@@ -1,3 +1,5 @@
+#include <memory>
+
 #pragma once
 
 #include "common.h"
@@ -7,6 +9,7 @@
 #include <unordered_set>
 #include <vector>
 #include <exception>
+#include <memory>
 
 namespace NGenericHelper {
 
@@ -19,14 +22,23 @@ class TGenericHelper<EGenericSpecification::Mediator> {
 public:
     TGenericHelper<EGenericSpecification::Mediator>() = default;
 
-    void Notify(const NAB::TAUser* a, EMediatorEvent event) {
-        if (a->GetName() == "AUser") {
+    void RegisterUsers() {
+        UserOnStart = std::make_unique<NAB::TBUser>("b1");
+        UserOnStop = std::make_unique<NAB::TBUser>("b2");
+    }
+
+    void Notify(const NAB::TAUser& a, EMediatorEvent event) {
+        if (a.GetName() == "AUser") {
             switch (event) {
                 case EMediatorEvent::Start:
-                    userOnStart->OnStartAction();
+                    if (UserOnStart) {
+                        UserOnStart->OnStartAction();
+                    }
                     break;
                 case EMediatorEvent::Stop:
-                    userOnStop->OnStopAction();
+                    if (UserOnStop) {
+                        UserOnStop->OnStopAction();
+                    }
                     break;
                 default:
                     throw std::invalid_argument("can't notify");
@@ -37,8 +49,8 @@ public:
     }
 
 private:
-    NAB::TBUser* userOnStart;
-    NAB::TBUser* userOnStop;
+    std::unique_ptr<NAB::TBUser> UserOnStart = nullptr;
+    std::unique_ptr<NAB::TBUser> UserOnStop = nullptr;
 };
 
 }  // namespace NGenericHelper
