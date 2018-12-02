@@ -34,3 +34,9 @@ They are just for me, but `test final` contains generating of hierarchy from hom
 Беру от каждого из списков внутрии LiearHierarcy (класс TMapLinearHierarchy)
 
 И от всего этого ScatterHierarchy
+
+**Файлы**
+https://github.com/ulyanin/mipt-metaprogramming/blob/master/linear_hierarchy/lib/generate_fibonaccy_hierarchy.h -- основной
+https://github.com/ulyanin/mipt-metaprogramming/blob/master/linear_hierarchy/lib/generate_scatter_hierarchy.h -- scatter иерархия
+https://github.com/ulyanin/mipt-metaprogramming/blob/master/linear_hierarchy/lib/generate_linear_hierarchy.h -- линейная
+https://github.com/ulyanin/mipt-metaprogramming/blob/master/linear_hierarchy/lib/fibonaccy.h -- фиббоначи constexpr
