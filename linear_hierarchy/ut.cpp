@@ -1,6 +1,7 @@
 #include "ut.h"
 #include "lib/generate_linear_hierarchy.h"
 #include "lib/generate_scatter_hierarchy.h"
+#include "lib/generate_fibonaccy_hierarchy.h"
 #include <iostream>
 #include <sstream>
 
@@ -96,4 +97,40 @@ void Test2()
     std::cout << static_cast<NTest2::TExample2&>(widgetInfo).F2() << std::endl;
     std::cout << static_cast<NTest2::TExample3&>(widgetInfo).F3() << std::endl;
     std::cout << "} // test2" << std::endl << std::endl;
+}
+
+namespace NTest3 {
+
+template <size_t n>
+class TInt;
+
+template <size_t n, size_t cur = 0, class TypeList = TEmptyTypeList>
+struct TGenTypeList;
+
+template <size_t n, size_t cur, class ...T>
+struct TGenTypeList<n, cur, TTypeList<T...>>
+{
+private:
+    using TElem = TInt<n>;
+
+public:
+    using TResult = typename TGenTypeList<n - 1, cur + 1, TTypeList<TElem, T...>>::TResult;
+};
+
+template <size_t cur, class ...T>
+struct TGenTypeList<0, cur, TTypeList<T...>>
+{
+    using TResult = TTypeList<T...>;
+};
+
+
+using TLongTypeList = TGenTypeList<10>::TResult;
+using TSplitList = typename NFibonaccyHierarchy::TSplitTypeListWithFibonaccy<TLongTypeList>::TResult;
+
+} // namespace NTest3
+
+void Test3()
+{
+    std::cout  << GetNamePretty<NTest3::TLongTypeList>() << std::endl;
+    std::cout  << GetNamePretty<NTest3::TSplitList>() << std::endl;
 }

@@ -19,13 +19,13 @@ struct TGetImpl<0u, TypeList> {
     using Result = typename TypeList::THead;
 };
 
+
 }  // namespace NTypeList
 
 template <>
 struct TTypeList<> {
     static constexpr size_t Length = 0;
     static constexpr bool IsEmpty = true;
-
 };
 
 using TEmptyTypeList = TTypeList<>;
@@ -40,6 +40,7 @@ struct TTypeList<H, T...> {
 
     template <unsigned N>
     using TGet = typename ::NTypeList::TGetImpl<N, TTypeList<H, T...>>::Result;
+
 };
 
 template <class Head, class TypeList>
@@ -47,7 +48,7 @@ struct TAddHead;
 
 template <class Head, class ...T>
 struct TAddHead<Head, TTypeList<T...>> {
-    using Result = TTypeList<Head, T...>;
+    using TResult = TTypeList<Head, T...>;
 };
 
 template <class T1, class T2>
@@ -82,10 +83,9 @@ namespace {
         using Erased_ = typename EraseImpl<n - 1, Tail_>::Result;
     public:
 
-        using Result = typename TAddHead<Head_, Erased_>::Result;
+        using Result = typename TAddHead<Head_, Erased_>::TResult;
 
     };
-
 
 
 }  // unnamed namespace
@@ -96,4 +96,36 @@ struct Erase;
 template <size_t i, class ...T>
 struct Erase<i, TTypeList<T...>> {
     using Result = typename EraseImpl<i, TTypeList<T...>>::Result;
+};
+
+
+template <class TypeList, class C>
+struct TAppend;
+
+template <class C>
+struct TAppend<TEmptyTypeList, C>
+{
+    using Result = TTypeList<C>;
+};
+
+template <class H, class ...T, class C>
+struct TAppend<TTypeList<H, T...>, C>
+{
+    using TResult = TAddHead<H, typename TAppend<TTypeList<T...>, C>::TResult>;
+};
+
+
+template <bool Cond, class Elem, class TypeList>
+struct TAddHeadIf;
+
+template <class Elem, class TypeList>
+struct TAddHeadIf<true, Elem, TypeList>
+{
+    using TResult = typename TAddHead<Elem, TypeList>::TResult;
+};
+
+template <class Elem, class TypeList>
+struct TAddHeadIf<false, Elem, TypeList>
+{
+    using TResult = TypeList;
 };

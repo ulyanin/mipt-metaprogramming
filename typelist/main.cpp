@@ -46,7 +46,7 @@ int main() {
 
 
         // error: static assertion failed: TTypelist index out of range
-        //using numberTypesNew = Erase<10, numberTypes>::Result;
+        //using numberTypesNew = Erase<10, numberTypes>::TResult;
 
     }
 
