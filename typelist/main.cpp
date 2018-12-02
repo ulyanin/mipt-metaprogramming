@@ -16,7 +16,7 @@ int main() {
         // basic
         std::cout << numberTypes::Length << " " << numberTypes() << std::endl;
         std::cout << numberTypes::TTail() << std::endl;
-        std::cout << TAddHead<short int, numberTypes>::Result() << std::endl;
+        std::cout << TAddHead<short int, numberTypes>::TResult() << std::endl;
     }
 
     std::cout << std::endl;

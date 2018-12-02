@@ -37,6 +37,7 @@ class TGenScatterHierarchy<TTypeList<H, T...>>
     : public TGenScatterHierarchy<TTypeList<H>>
     , public TGenScatterHierarchy<TTypeList<T...>>
 {
+public:
     using TList = TTypeList<H, T...>;
     using TLeftBase = TGenScatterHierarchy<TTypeList<H>>;
     using TRightBase = TGenScatterHierarchy<TTypeList<T...>>;

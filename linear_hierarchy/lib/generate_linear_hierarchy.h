@@ -22,7 +22,7 @@ class TEmptyType
 
 template <
     typename TypeList,
-    template<class, class> class Unit,
+    template<class> class Unit,
     typename Root = TEmptyType
 >
 class TLinearHierarchy;
@@ -31,21 +31,24 @@ class TLinearHierarchy;
 template <
     typename U,
     typename ... T,
-    template<class, class> class Unit,
+    template<class> class Unit,
     class Root
 >
-class TLinearHierarchy<TTypeList<U, T ...>, Unit, Root>:
-    public Unit<U, TLinearHierarchy<TTypeList<T ...>, Unit, Root>>
+class TLinearHierarchy<TTypeList<U, T ...>, Unit, Root>
+    : public U
+    , public Unit<TLinearHierarchy<TTypeList<T ...>, Unit, Root>>
 {
+public:
+    using TCurrentType = U;
 };
 
 
 template<
-    template<class, class> class Unit,
+    template<class> class Unit,
     class Root
 >
 class TLinearHierarchy<TEmptyTypeList, Unit, Root>:
-    public Unit<TEmptyTypeList, Root>
+    public Unit<Root>
 {
 };
 
