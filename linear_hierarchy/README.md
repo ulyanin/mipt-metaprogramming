@@ -25,6 +25,8 @@ There are some test cases in file ut.cpp
 
 They are just for me, but `test final` contains generating of hierarchy from homework
 
+***Как делал:***
+
 Я беру список классов (в моем случае это классы вида TInt<i>)
 
 Делаю из них список списков, каждый из которых длины число фиббоначи: [[1], [2, 3], [3, 4, 5], [6, 7, 8, 9, 10], ...] (класс TSplitTypeListWithFibonaccyImpl)
